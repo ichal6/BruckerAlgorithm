@@ -24,6 +24,10 @@ public class Task implements Node{
         return nextTask == null;
     }
 
+    public boolean isLeaf(){
+        return previousTasks.isEmpty();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

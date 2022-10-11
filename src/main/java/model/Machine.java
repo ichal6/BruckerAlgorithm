@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Machine {
         this.executedList.add(node);
     }
 
-    public Node getNode(int index){
-        return executedList.get(index);
+    public List<Node> getNodes(){
+        return new ArrayList<>(executedList);
     }
 }

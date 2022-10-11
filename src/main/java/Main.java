@@ -18,7 +18,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         Task rootNode = LoadData.loadFromFile();
         Brucker brucker = new Brucker(3, rootNode);
-        brucker.display();
+        brucker.displaytasks();
+        brucker.displayMachines();
         primaryStage.show();
     }
 

@@ -8,18 +8,29 @@ import java.util.*;
 public class Brucker {
     private Integer L_Max;
     private List<Machine> machines;
-    private int numberOfMachines;
-    private Task root;
+    private final int numberOfMachines;
+    private final Task root;
+    private List<Task> upperTask;
 
 
     public Brucker(int numberOfMachines, Task root){
         this.machines = new ArrayList<>(numberOfMachines);
+        for(int i = 0; i< numberOfMachines; i++){
+            this.machines.add(new Machine());
+        }
+        this.numberOfMachines = numberOfMachines;
+        this.upperTask = new ArrayList<>();
         this.root = root;
         runAlgorithm();
+
     }
 
     private void runAlgorithm() {
         setPriorities(this.root);
+        upperTask.sort(Comparator.comparing(Task::getPriorities).reversed().thenComparing(Task::getId));
+        for(int i = 0; i < this.numberOfMachines; i++){
+            this.machines.get(i).addNode(upperTask.get(i));
+        }
     }
 
     private void setPriorities(Task task){
@@ -34,12 +45,16 @@ public class Brucker {
                 break;
             }
             task = queue.remove();
-            queue.addAll(task.getPreviousTasks());
+
+            if(task.isLeaf())
+                this.upperTask.add(task);
+            else
+                queue.addAll(task.getPreviousTasks());
         }
 
     }
 
-    public void display(){
+    public void displaytasks(){
         Set<Task> tasks = new LinkedHashSet<>();
         tasks.add(root);
         while(tasks.size() > 0){
@@ -50,6 +65,12 @@ public class Brucker {
             }
             tasks.clear();
             tasks.addAll(tempList);
+        }
+    }
+
+    public void displayMachines(){
+        for(Machine machine: machines){
+            System.out.println(machine.getNodes());
         }
     }
 }

@@ -1,0 +1,14 @@
+[
+  {"id":"Z12","d_j":"7"},
+  {"id":"Z11","d_j":"3","nextTaskId":"Z12"},
+  {"id":"Z10","d_j":"6","nextTaskId":"Z12"},
+  {"id":"Z9","d_j":"1","nextTaskId":"Z11"},
+  {"id":"Z8","d_j":"3","nextTaskId":"Z11"},
+  {"id":"Z7","d_j":"5","nextTaskId":"Z10"},
+  {"id":"Z6","d_j":"3","nextTaskId":"Z9"},
+  {"id":"Z5","d_j":"2","nextTaskId":"Z9"},
+  {"id":"Z4","d_j":"5","nextTaskId":"Z8"},
+  {"id":"Z3","d_j":"4","nextTaskId":"Z7"},
+  {"id":"Z2","d_j":"4","nextTaskId":"Z7"},
+  {"id":"Z1","d_j":"1","nextTaskId":"Z7" }
+]

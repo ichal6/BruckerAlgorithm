@@ -1,3 +1,4 @@
+import controller.LoadData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ public class Main extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("Brucker's Algorithm");
         primaryStage.setScene(new Scene(root));
+        LoadData.loadFromFile();
 
         primaryStage.show();
     }

@@ -12,8 +12,10 @@ import java.util.Objects;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Task implements Node{
-    private List<Node> previousTasks = new LinkedList<>();
-    private Node nextTask;
+    private List<Task> previousTasks = new LinkedList<>();
+    private Task nextTask;
+
+    private Integer priorities;
     private String id;
     private int d_j;
     private Integer L;
@@ -41,6 +43,7 @@ public class Task implements Node{
                 "id='" + id + '\'' +
                 ", d_j=" + d_j +
                 ", L=" + L +
+                ", Priorities=" + priorities +
                 '}';
     }
 }

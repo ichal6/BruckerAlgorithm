@@ -31,14 +31,20 @@ public class Brucker {
 
         List<Task> finishJobs = new LinkedList<>();
         Set<Task> possibleReadyTasks = new LinkedHashSet<>();
+        int workTime = 1;
 
         do {
             upperTask.sort(Comparator.comparing(Task::getPriorities).reversed().thenComparing(Task::getId));
             for(int i = 0; i < this.numberOfMachines; i++){
                 if(i >= upperTask.size()){
-                    this.machines.get(i).addNode(new Node());
+                    this.machines.get(i).addNode(new Node()); //insert empty Node for IDLE processor
                 } else{
                     this.machines.get(i).addNode(upperTask.get(i));
+                    int actualL = workTime - upperTask.get(i).getD_j();
+                    upperTask.get(i).setL(actualL);
+                    if (L_Max == null || actualL > L_Max){
+                        this.L_Max = actualL;
+                    }
                     finishJobs.add(this.upperTask.get(i));
                     if(this.upperTask.get(i).getNextTask() != null)
                         possibleReadyTasks.add(this.upperTask.get(i).getNextTask());
@@ -50,6 +56,7 @@ public class Brucker {
                 }
             });
             this.upperTask.removeAll(finishJobs);
+            workTime++;
         } while(!upperTask.isEmpty());
 
     }
@@ -93,5 +100,6 @@ public class Brucker {
         for(Machine machine: machines){
             System.out.println(machine.getNodes());
         }
+        System.out.println("L_Max = " + this.L_Max);
     }
 }

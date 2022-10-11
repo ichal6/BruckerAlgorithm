@@ -1,6 +1,7 @@
 package algorithm;
 
 import model.Machine;
+import model.Node;
 import model.Task;
 
 import java.util.*;
@@ -27,10 +28,30 @@ public class Brucker {
 
     private void runAlgorithm() {
         setPriorities(this.root);
-        upperTask.sort(Comparator.comparing(Task::getPriorities).reversed().thenComparing(Task::getId));
-        for(int i = 0; i < this.numberOfMachines; i++){
-            this.machines.get(i).addNode(upperTask.get(i));
-        }
+
+        List<Task> finishJobs = new LinkedList<>();
+        Set<Task> possibleReadyTasks = new LinkedHashSet<>();
+
+        do {
+            upperTask.sort(Comparator.comparing(Task::getPriorities).reversed().thenComparing(Task::getId));
+            for(int i = 0; i < this.numberOfMachines; i++){
+                if(i >= upperTask.size()){
+                    this.machines.get(i).addNode(new Node());
+                } else{
+                    this.machines.get(i).addNode(upperTask.get(i));
+                    finishJobs.add(this.upperTask.get(i));
+                    if(this.upperTask.get(i).getNextTask() != null)
+                        possibleReadyTasks.add(this.upperTask.get(i).getNextTask());
+                }
+            }
+            possibleReadyTasks.stream().forEach(task -> {
+                if(finishJobs.containsAll(task.getPreviousTasks())){
+                    upperTask.add(task);
+                }
+            });
+            this.upperTask.removeAll(finishJobs);
+        } while(!upperTask.isEmpty());
+
     }
 
     private void setPriorities(Task task){

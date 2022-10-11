@@ -11,7 +11,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Task implements Node{
+public class Task extends Node{
     private List<Task> previousTasks = new LinkedList<>();
     private Task nextTask;
 

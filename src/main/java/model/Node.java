@@ -1,5 +1,5 @@
 package model;
 
-public interface Node {
+public class Node {
 
 }

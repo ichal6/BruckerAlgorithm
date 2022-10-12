@@ -22,7 +22,13 @@ public class MainController implements Initializable {
     @FXML
     private TableView<Task> tableView;
     @FXML
-    private TableColumn columnOne, columnTwo, columnThree, columnFour;
+    private TableColumn<Task, String> taskIdColumn;
+    @FXML
+    private TableColumn<Task, Integer> deadlineColumn;
+    @FXML
+    private TableColumn<Task, Task> nextTaskColumn;
+    @FXML
+    private TableColumn<Task, Integer> LColumn;
     @FXML
     public Label L_maxLabel;
     @FXML
@@ -52,10 +58,10 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        columnOne.setCellValueFactory(new PropertyValueFactory<Task, String>("id"));
-        columnTwo.setCellValueFactory(new PropertyValueFactory<Task, Integer>("d_j"));
-        columnThree.setCellValueFactory(new PropertyValueFactory<Task, Task>("nextTask"));
-        columnFour.setCellValueFactory(new PropertyValueFactory<Task, Integer>("L"));
+        taskIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        deadlineColumn.setCellValueFactory(new PropertyValueFactory<>("d_j"));
+        nextTaskColumn.setCellValueFactory(new PropertyValueFactory<>("nextTask"));
+        LColumn.setCellValueFactory(new PropertyValueFactory<>("L"));
         fillTableWithData();
         this.runAlgorithmButton.setDisable(true);
         lmaxButton.setDisable(true);

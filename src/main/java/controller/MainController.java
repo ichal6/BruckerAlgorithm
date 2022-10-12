@@ -142,25 +142,28 @@ public class MainController implements Initializable {
             }
         }
 
-        for(int k = 0; k < maxSize; k++){
-            Label label = new Label(String.valueOf(k + 1));
+        for(int k = 1; k <= maxSize; k++){
+            Label label = new Label(String.valueOf(k));
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
             gridPane.add(label, k, 0);
         }
 
-        int j = 0, i = 1;
+        int j = 1, i = 1;
         for(Machine machine: machines){
+            Label label = new Label("M" + j);
+            label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
+            gridPane.add(label, 0, i);
             for(model.Node node: machine.getNodes()){
                 String taskName = "-";
                 if(node instanceof Task task) {
                     taskName = task.getId();
                 }
-                Label label = new Label(taskName);
+                label = new Label(taskName);
                 label.setFont(new Font("Arial", 24));
                 gridPane.add(label, j, i);
                 j++;
             }
-            j=0;
+            j=1;
             i++;
         }
         Scene scene = new Scene(gridPane);

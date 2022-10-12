@@ -38,11 +38,11 @@ public class MainController implements Initializable {
     private int machines;
 
 
-    public void setRoot(Task root){
+    public void setRoot(Task root) {
         this.root = root;
     }
 
-    private void fillTableWithData(){
+    private void fillTableWithData() {
         Map<String, Task> tasks = LoadData.tasksMap;
         tasks.forEach(
                 (key, value) -> tableView.getItems().add(value)
@@ -59,12 +59,13 @@ public class MainController implements Initializable {
         fillTableWithData();
         this.runAlgorithmButton.setDisable(true);
         lmaxButton.setDisable(true);
+        numberValidator();
     }
 
 
     public void addNewTask(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("addNewTask.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -86,4 +87,18 @@ public class MainController implements Initializable {
         effectLabel.setText(String.valueOf(algorithm.getL_Max()));
     }
 
+    private void numberValidator() {
+        machinesTF.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getControlNewText().matches(
+                    "([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9])?")) {
+                boolean disableButton = change.getControlNewText().length() == 0;
+                this.numberOfMachinesButton.setDisable(disableButton);
+                return change;
+            } else {
+                boolean disableButton = this.machinesTF.lengthProperty().get() == 0;
+                this.numberOfMachinesButton.setDisable(disableButton);
+                return null;
+            }
+        }));
+    }
 }

@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class addNewTaskController implements Initializable {
 
@@ -24,10 +23,7 @@ public class addNewTaskController implements Initializable {
     @FXML
     private TextField taskIdTextField, deadlineTextField, nextTaskIdTextField;
     @FXML
-    private Button addButton, retunrButton;
-
-    private Stage stage;
-    private Scene scene;
+    private Button addButton, returnButton;
 
     private final Map<String, Task> tasks = LoadData.tasksMap;
 
@@ -37,10 +33,13 @@ public class addNewTaskController implements Initializable {
     }
 
     public void add(ActionEvent event) throws IOException {
-        numberValidator();
         String taskId = taskIdTextField.getText();
         if (!validatorTaskID(taskId)){
             displayMessage("Wrong id");
+            return;
+        }
+        if(deadlineTextField.getText().length() == 0){
+            displayMessage("Please provide deadline");
             return;
         }
         int deadline = Integer.parseInt(deadlineTextField.getText());
@@ -59,11 +58,11 @@ public class addNewTaskController implements Initializable {
     }
 
     public void returnToMainMenu(ActionEvent event) throws IOException {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("LayoutFXML/enter_page.fxml"));
         Parent root = loader.load();
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
 
         MainController controller = loader.getController();
@@ -84,19 +83,16 @@ public class addNewTaskController implements Initializable {
         return !this.tasks.containsKey(id);
     }
 
-    private boolean numberValidator() {
-        AtomicBoolean status = new AtomicBoolean(true);
+    private void numberValidator() {
         deadlineTextField.setTextFormatter(new TextFormatter<>(change -> {
             if (change.getControlNewText().matches(
                     "([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9])?")) {
                 return change;
             } else {
                 displayMessage("Wrong deadline value");
-                status.set(false);
                 change.setText("1");
                 return change;
             }
         }));
-        return status.get();
     }
 }

@@ -32,6 +32,6 @@
          </font>
       </Label>
       <Button fx:id="addButton" layoutX="14.0" layoutY="254.0" mnemonicParsing="false" onAction="#add" text="ADD" />
-      <Button fx:id="retunrButton" layoutX="100.0" layoutY="254.0" mnemonicParsing="false" onAction="#returnToMainMenu" text="RETRUN" />
+      <Button fx:id="returnButton" layoutX="100.0" layoutY="254.0" mnemonicParsing="false" onAction="#returnToMainMenu" text="RETURN" />
    </children>
 </AnchorPane>

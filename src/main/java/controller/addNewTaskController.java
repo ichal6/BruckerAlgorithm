@@ -6,13 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Task;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class addNewTaskController {
 
@@ -26,17 +25,31 @@ public class addNewTaskController {
     private Stage stage;
     private Scene scene;
 
+    private final Map<String, Task> tasks = LoadData.tasksMap;
+
     public void add(ActionEvent event) throws IOException {
 
         String taskId = taskIdTextField.getText();
+        if (!validatorTaskID(taskId)){
+            displayMessage("Wrong id");
+            return;
+        }
         int deadline = Integer.parseInt(deadlineTextField.getText());
         String nextTaskId = nextTaskIdTextField.getText();
+        if (validatorTaskID(nextTaskId)){
+            displayMessage("Wrong Next Id");
+            return;
+        }
 
         Task nextTask = LoadData.tasksMap.get(nextTaskId);
         Task newTask = new Task(taskId, deadline, nextTask);
         nextTask.getPreviousTasks().add(newTask);
         LoadData.tasksMap.put("Z13", newTask);
 
+        returnToMainMenu(event);
+    }
+
+    public void returnToMainMenu(ActionEvent event) throws IOException {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("LayoutFXML/enter_page.fxml"));
@@ -49,11 +62,16 @@ public class addNewTaskController {
         stage.show();
     }
 
-    public void returnToStageOne(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    private void displayMessage(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Wrong Id");
+        alert.setHeaderText(message);
+        alert.setContentText("Please insert correct data");
+        alert.showAndWait().ifPresent(rs -> {
+        });
+    }
+
+    private boolean validatorTaskID(String id){
+        return !this.tasks.containsKey(id);
     }
 }

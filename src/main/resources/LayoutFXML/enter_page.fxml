@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
-<VBox>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <children>
-        <Label text="Hello world FXML"/>
+        <TableView fx:id="tableView" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="305.0">
+            <columns>
+                <TableColumn fx:id="columnOne" prefWidth="75.0" text="Task ID" />
+                <TableColumn fx:id="columnTwo" prefWidth="75.0" text="Deadline" />
+                <TableColumn fx:id="columnThree" prefWidth="75.0" text="Next Task" />
+                <TableColumn fx:id="columnFour" prefWidth="75.0" text="L" />
+            </columns>
+        </TableView>
+        <Label fx:id="effectLabel" layoutX="346.0" layoutY="188.0" prefHeight="25.0" prefWidth="186.0">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="addNewTaskButton" layoutX="116.0" layoutY="221.0" mnemonicParsing="false" onAction="#addNewTask" text="ADD NEW TASK" />
+        <TextField fx:id="machinesTF" layoutX="413.0" layoutY="14.0" prefHeight="25.0" prefWidth="48.0" />
+        <Button fx:id="numberOfMachinesButton" layoutX="354.0" layoutY="48.0" mnemonicParsing="false" onAction="#setMachines" text="SET NUMBER OF MACHINES" />
+        <Button fx:id="runAlgorithmButton" layoutX="365.0" layoutY="97.0" mnemonicParsing="false" onAction="#runAlgorithm" text="RUN ALGORITHM">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Button fx:id="lmaxButton" layoutX="395.0" layoutY="151.0" mnemonicParsing="false" onAction="#showLmax" text="SHOW L MAX" />
     </children>
-</VBox>
+</AnchorPane>

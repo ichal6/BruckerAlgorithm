@@ -14,6 +14,8 @@ import java.util.Map;
 
 public class LoadData {
 
+    public static final Map<String, Task> tasksMap = new HashMap<>();
+
     public static Task loadFromFile() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -21,8 +23,6 @@ public class LoadData {
 
         JSONArray a = (JSONArray) parser.parse(fileReader);
         Object[] objects = a.toArray();
-
-        Map<String, Task> tasksMap = new HashMap<>();
         Task root = null;
         for(Object task: objects){
             Task nextTask = null;

@@ -1,5 +1,6 @@
 import algorithm.Brucker;
 import controller.LoadData;
+import controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +18,8 @@ public class Main extends Application {
         primaryStage.setTitle("Brucker's Algorithm");
         primaryStage.setScene(new Scene(root));
         Task rootNode = LoadData.loadFromFile();
-        Brucker brucker = new Brucker(3, rootNode);
-        brucker.displaytasks();
-        brucker.displayMachines();
+        MainController controller = loader.getController();
+        controller.setRoot(rootNode);
         primaryStage.show();
     }
 

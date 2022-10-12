@@ -22,11 +22,9 @@ public class Brucker {
         this.numberOfMachines = numberOfMachines;
         this.upperTask = new ArrayList<>();
         this.root = root;
-        runAlgorithm();
-
     }
 
-    private void runAlgorithm() {
+    public void runAlgorithm() {
         setPriorities(this.root);
 
         List<Task> finishJobs = new LinkedList<>();
@@ -80,6 +78,10 @@ public class Brucker {
                 queue.addAll(task.getPreviousTasks());
         }
 
+    }
+
+    public Integer getL_Max() {
+        return L_Max;
     }
 
     public void displaytasks(){

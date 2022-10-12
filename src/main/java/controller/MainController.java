@@ -24,7 +24,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn columnOne, columnTwo, columnThree, columnFour;
     @FXML
-    public Label effectLabel;
+    public Label L_maxLabel;
     @FXML
     private TextField machinesTF;
 
@@ -84,7 +84,7 @@ public class MainController implements Initializable {
     }
 
     public void showLmax(ActionEvent event) {
-        effectLabel.setText(String.valueOf(algorithm.getL_Max()));
+        L_maxLabel.setText("L_MAX = " + algorithm.getL_Max());
     }
 
     private void numberValidator() {

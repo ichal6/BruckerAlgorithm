@@ -5,16 +5,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Machine;
 import model.Task;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -95,6 +102,7 @@ public class MainController implements Initializable {
         this.runAlgorithmButton.setDisable(false);
         this.tableView.getSortOrder().add(taskIdColumn);
         this.tableView.refresh();
+        machinesTable(algorithm.getMachines());
     }
 
     public void showLmax(ActionEvent event) {
@@ -114,5 +122,37 @@ public class MainController implements Initializable {
                 return null;
             }
         }));
+    }
+
+    private void machinesTable(List<Machine> machines){
+
+        GridPane gridPane = new GridPane();
+        gridPane.setMinSize(500,500);
+        gridPane.setPadding(new Insets(10,10,10,10));
+        gridPane.setVgap(5);
+        gridPane.setHgap(20);
+        gridPane.setAlignment(Pos.CENTER);
+
+        int j = 0, i = 0;
+        for(Machine machine: machines){
+            for(model.Node node: machine.getNodes()){
+                String taskName = "-";
+                if(node instanceof Task task) {
+                    taskName = task.getId();
+                }
+                Label label = new Label(taskName);
+                label.setFont(new Font("Arial", 24));
+                gridPane.add(label, j, i);
+                j++;
+            }
+            j=0;
+            i++;
+        }
+        Scene scene = new Scene(gridPane);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Result of Algorithm");
+        stage.setScene(scene);
+        stage.show();
     }
 }

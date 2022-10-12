@@ -104,4 +104,8 @@ public class Brucker {
         }
         System.out.println("L_Max = " + this.L_Max);
     }
+
+    public List<Machine> getMachines() {
+        return machines;
+    }
 }

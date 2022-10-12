@@ -53,6 +53,7 @@ public class MainController implements Initializable {
         tasks.forEach(
                 (key, value) -> tableView.getItems().add(value)
         );
+        this.tableView.getSortOrder().add(taskIdColumn);
     }
 
 
@@ -67,7 +68,6 @@ public class MainController implements Initializable {
         lmaxButton.setDisable(true);
         numberValidator();
     }
-
 
     public void addNewTask(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("addNewTask.fxml"));
@@ -87,6 +87,8 @@ public class MainController implements Initializable {
         algorithm.runAlgorithm();
         lmaxButton.setDisable(false);
         this.runAlgorithmButton.setDisable(false);
+        this.tableView.getSortOrder().add(taskIdColumn);
+        this.tableView.refresh();
     }
 
     public void showLmax(ActionEvent event) {

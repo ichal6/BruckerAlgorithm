@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,9 +12,12 @@ import javafx.stage.Stage;
 import model.Task;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-public class addNewTaskController {
+public class addNewTaskController implements Initializable {
 
     @FXML
     private Label taskIdLabel, deadlineLabel, nextTaskIdLabel, addNewTaskLabel;
@@ -27,8 +31,13 @@ public class addNewTaskController {
 
     private final Map<String, Task> tasks = LoadData.tasksMap;
 
-    public void add(ActionEvent event) throws IOException {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        numberValidator();
+    }
 
+    public void add(ActionEvent event) throws IOException {
+        numberValidator();
         String taskId = taskIdTextField.getText();
         if (!validatorTaskID(taskId)){
             displayMessage("Wrong id");
@@ -73,5 +82,21 @@ public class addNewTaskController {
 
     private boolean validatorTaskID(String id){
         return !this.tasks.containsKey(id);
+    }
+
+    private boolean numberValidator() {
+        AtomicBoolean status = new AtomicBoolean(true);
+        deadlineTextField.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getControlNewText().matches(
+                    "([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9])?")) {
+                return change;
+            } else {
+                displayMessage("Wrong deadline value");
+                status.set(false);
+                change.setText("1");
+                return change;
+            }
+        }));
+        return status.get();
     }
 }

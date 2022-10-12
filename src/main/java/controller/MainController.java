@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Machine;
@@ -133,7 +134,21 @@ public class MainController implements Initializable {
         gridPane.setHgap(20);
         gridPane.setAlignment(Pos.CENTER);
 
-        int j = 0, i = 0;
+        int maxSize = 0;
+        for(Machine machine: machines){
+            int size = machine.getNodes().size();
+            if(size > maxSize){
+                maxSize = size;
+            }
+        }
+
+        for(int k = 0; k < maxSize; k++){
+            Label label = new Label(String.valueOf(k + 1));
+            label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
+            gridPane.add(label, k, 0);
+        }
+
+        int j = 0, i = 1;
         for(Machine machine: machines){
             for(model.Node node: machine.getNodes()){
                 String taskName = "-";

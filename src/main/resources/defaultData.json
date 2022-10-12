@@ -2,13 +2,13 @@
   {"id":"Z12","d_j":"7"},
   {"id":"Z11","d_j":"3","nextTaskId":"Z12"},
   {"id":"Z10","d_j":"6","nextTaskId":"Z12"},
-  {"id":"Z9","d_j":"1","nextTaskId":"Z11"},
-  {"id":"Z8","d_j":"3","nextTaskId":"Z11"},
-  {"id":"Z7","d_j":"5","nextTaskId":"Z10"},
-  {"id":"Z6","d_j":"3","nextTaskId":"Z9"},
-  {"id":"Z5","d_j":"2","nextTaskId":"Z9"},
-  {"id":"Z4","d_j":"4","nextTaskId":"Z8"},
-  {"id":"Z3","d_j":"6","nextTaskId":"Z7"},
-  {"id":"Z2","d_j":"4","nextTaskId":"Z7"},
-  {"id":"Z1","d_j":"1","nextTaskId":"Z7" }
+  {"id":"Z09","d_j":"1","nextTaskId":"Z11"},
+  {"id":"Z08","d_j":"3","nextTaskId":"Z11"},
+  {"id":"Z07","d_j":"5","nextTaskId":"Z10"},
+  {"id":"Z06","d_j":"3","nextTaskId":"Z09"},
+  {"id":"Z05","d_j":"2","nextTaskId":"Z09"},
+  {"id":"Z04","d_j":"4","nextTaskId":"Z08"},
+  {"id":"Z03","d_j":"6","nextTaskId":"Z07"},
+  {"id":"Z02","d_j":"4","nextTaskId":"Z07"},
+  {"id":"Z01","d_j":"1","nextTaskId":"Z07" }
 ]

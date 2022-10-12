@@ -52,9 +52,9 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        columnOne.setCellValueFactory(new PropertyValueFactory<Task, Integer>("id"));
-        columnTwo.setCellValueFactory(new PropertyValueFactory<Task, Integer>("d"));
-        columnThree.setCellValueFactory(new PropertyValueFactory<Task, Task>("nextTaskID"));
+        columnOne.setCellValueFactory(new PropertyValueFactory<Task, String>("id"));
+        columnTwo.setCellValueFactory(new PropertyValueFactory<Task, Integer>("d_j"));
+        columnThree.setCellValueFactory(new PropertyValueFactory<Task, Task>("nextTask"));
         columnFour.setCellValueFactory(new PropertyValueFactory<Task, Integer>("L"));
         fillTableWithData();
         this.runAlgorithmButton.setDisable(true);

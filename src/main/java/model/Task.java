@@ -43,11 +43,6 @@ public class Task extends Node{
 
     @Override
     public String toString() {
-        return "Task{" +
-                "id='" + id + '\'' +
-                ", d_j=" + d_j +
-                ", L=" + L +
-                ", Priorities=" + priorities +
-                '}';
+        return this.id;
     }
 }

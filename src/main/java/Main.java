@@ -7,17 +7,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Task;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Task rootNode = null;
+        try {
+            rootNode = LoadData.loadFromFile();
+        } catch (ParseException e)  {
+            System.err.println("Problem with parse file. Please check JSON format");
+            System.err.println("Please insert data manually");
+        } catch (IOException e){
+            System.err.println("Problem with access to file. Check file location");
+            System.err.println("Please insert data manually");
+        }
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("LayoutFXML/enter_page.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Brucker's Algorithm");
         primaryStage.setScene(new Scene(root));
-        Task rootNode = LoadData.loadFromFile();
         MainController controller = loader.getController();
         controller.setRoot(rootNode);
         primaryStage.show();

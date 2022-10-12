@@ -20,6 +20,12 @@ public class Task extends Node{
     private int d_j;
     private Integer L;
 
+    public Task(String taskId, int deadline, Task task) {
+        this.id = taskId;
+        this.d_j = deadline;
+        this.nextTask = task;
+    }
+
     public boolean isRoot() {
         return nextTask == null;
     }

@@ -35,6 +35,7 @@ public class LoadData {
                 nextTask.getPreviousTasks().add(newTask);
             } else{
                 root = newTask;
+                tasksMap.put("root", root);
             }
             newTask.setNextTask(nextTask);
             tasksMap.put(newTask.getId(), newTask);

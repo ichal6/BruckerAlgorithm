@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="174.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addNewTaskController">
+   <children>
+      <TextField fx:id="taskIdTextField" layoutX="14.0" layoutY="76.0" />
+      <TextField fx:id="deadlineTextField" layoutX="14.0" layoutY="145.0" />
+      <TextField fx:id="nextTaskIdTextField" layoutX="14.0" layoutY="213.0" />
+      <Label fx:id="addNewTaskLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="149.0" text="ADD NEW TASK">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="taskIdLabel" alignment="CENTER" layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="149.0" text="ID">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="deadlineLabel" alignment="CENTER" layoutX="14.0" layoutY="120.0" prefHeight="25.0" prefWidth="149.0" text="Deadline">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nextTaskIdLabel" alignment="CENTER" layoutX="14.0" layoutY="188.0" prefHeight="25.0" prefWidth="149.0" text="Next Task ID">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="addButton" layoutX="14.0" layoutY="254.0" mnemonicParsing="false" onAction="#add" text="ADD" />
+      <Button fx:id="retunrButton" layoutX="100.0" layoutY="254.0" mnemonicParsing="false" onAction="#returnToStageOne" text="RETRUN" />
+   </children>
+</AnchorPane>

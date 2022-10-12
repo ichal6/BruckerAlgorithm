@@ -48,10 +48,13 @@ public class MainController implements Initializable {
         this.root = root;
     }
 
-    private void fillTableWithData() {
+    public void fillTableWithData() {
         Map<String, Task> tasks = LoadData.tasksMap;
         tasks.forEach(
-                (key, value) -> tableView.getItems().add(value)
+                (key, value) -> {
+                    if(!key.equals("root"))
+                        tableView.getItems().add(value);
+                }
         );
         this.tableView.getSortOrder().add(taskIdColumn);
     }
@@ -70,8 +73,11 @@ public class MainController implements Initializable {
     }
 
     public void addNewTask(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("addNewTask.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("LayoutFXML/add_new_task.fxml"));
+        stage.setUserData(this);
+        Parent root = loader.load();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class addNewTaskController implements Initializable {
+public class AddNewTaskController implements Initializable {
 
     @FXML
     private Label taskIdLabel, deadlineLabel, nextTaskIdLabel, addNewTaskLabel;

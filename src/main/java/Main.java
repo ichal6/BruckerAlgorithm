@@ -5,11 +5,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Task;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -28,6 +30,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("LayoutFXML/enter_page.fxml"));
         Parent root = loader.load();
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("icon_clock.png"))));
         primaryStage.setTitle("Brucker's Algorithm");
         primaryStage.setScene(new Scene(root));
         MainController controller = loader.getController();

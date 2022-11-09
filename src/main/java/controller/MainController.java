@@ -28,6 +28,10 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
+    public Button drawGraph;
+    @FXML
+    public Button showResults;
+    @FXML
     private TableView<Task> tableView;
     @FXML
     private TableColumn<Task, String> taskIdColumn;
@@ -76,7 +80,7 @@ public class MainController implements Initializable {
         LColumn.setCellValueFactory(new PropertyValueFactory<>("L"));
         fillTableWithData();
         this.runAlgorithmButton.setDisable(true);
-        lmaxButton.setDisable(true);
+        showResults.setDisable(true);
         numberValidator();
     }
 
@@ -172,5 +176,9 @@ public class MainController implements Initializable {
         stage.setTitle("Result of Algorithm");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void showGraph(ActionEvent actionEvent) {
+        System.out.println("Test click");
     }
 }

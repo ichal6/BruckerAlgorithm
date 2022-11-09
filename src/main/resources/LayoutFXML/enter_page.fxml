@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController" stylesheets="@../css/main.css" styleClass="main-window">
     <children>
         <TableView fx:id="tableView" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="305.0">
             <columns>
@@ -29,7 +29,7 @@
             <TextField fx:id="machinesTF" layoutX="340.0" layoutY="15.0" prefHeight="25.0" prefWidth="48.0" />
             <Button fx:id="numberOfMachinesButton" layoutX="400.0" layoutY="15.0" mnemonicParsing="false" onAction="#setMachines" text="SET NUMBER OF MACHINES" />
         </Pane>
-        <Button fx:id="runAlgorithmButton" layoutX="380.0" layoutY="60.0" mnemonicParsing="false" onAction="#runAlgorithm" text="RUN ALGORITHM">
+        <Button fx:id="runAlgorithmButton" layoutX="400.0" layoutY="60.0" mnemonicParsing="false" onAction="#runAlgorithm" text="RUN ALGORITHM" styleClass="run-button">
             <font>
                 <Font size="16.0" />
             </font>
@@ -46,15 +46,15 @@
             </font>
         </Button>
 
-        <Button layoutX="340.0" layoutY="221.0" text="Check data">
+        <Button layoutX="340.0" layoutY="221.0" text="Check data" styleClass="check-button">
             <font>
                 <Font size="12.0"/>
             </font>
         </Button>
 
-        <Button layoutX="490.0" layoutY="221.0" text="Reset data">
+        <Button layoutX="490.0" layoutY="221.0" text="Reset data" styleClass="reset-button">
             <font>
-                <Font size="12.0"/>
+                <Font name="Inter" size="12.0"/>
             </font>
         </Button>
 <!--        <Button fx:id="lmaxButton" layoutX="420.0" layoutY="151.0"  onAction="#showLmax" text="SHOW L MAX" />-->

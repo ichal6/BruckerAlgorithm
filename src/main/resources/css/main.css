@@ -1,0 +1,29 @@
+.main-window{
+    -fx-background-color: #D8E6EE;
+}
+
+.button{
+    -fx-text-fill: #777777;
+    -fx-font-family: 'Inter';
+    -fx-font-style: normal;
+    -fx-font-size: 12px;
+    -fx-border-radius: 6px;
+    -fx-background-color: #F3F3F3;
+}
+
+.run-button{
+    -fx-background-color: #FFA5A5;
+}
+
+.check-button{
+    -fx-background-color: #B6FFBD;
+}
+
+.reset-button{
+    -fx-background-color: #DEFDFF;
+}
+
+.reset-button:hover{
+    -fx-background-color: #C0FCFFFF;
+}
+

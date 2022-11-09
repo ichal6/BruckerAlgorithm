@@ -11,6 +11,10 @@
     -fx-background-color: #F3F3F3;
 }
 
+.button:hover{
+    -fx-opacity: 0.5;
+}
+
 .run-button{
     -fx-background-color: #FFA5A5;
 }
@@ -22,8 +26,3 @@
 .reset-button{
     -fx-background-color: #DEFDFF;
 }
-
-.reset-button:hover{
-    -fx-background-color: #C0FCFFFF;
-}
-

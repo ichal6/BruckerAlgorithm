@@ -1,6 +1,7 @@
 package controller;
 
 import algorithm.Brucker;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,8 @@ public class MainController implements Initializable {
     @FXML
     public Button showResults;
     @FXML
+    public GridPane resultsGrid;
+    @FXML
     private TableView<Task> tableView;
     @FXML
     private TableColumn<Task, String> taskIdColumn;
@@ -55,6 +58,8 @@ public class MainController implements Initializable {
     private Task root;
     private Brucker algorithm;
     private int machines;
+    private List<Node> gridPaneChildren;
+    private boolean isFirst = true;
 
 
     public void setRoot(Task root) {
@@ -75,6 +80,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.scene = this.tableView.getScene();
         taskIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         deadlineColumn.setCellValueFactory(new PropertyValueFactory<>("d_j"));
         nextTaskColumn.setCellValueFactory(new PropertyValueFactory<>("nextTask"));
@@ -108,7 +114,7 @@ public class MainController implements Initializable {
         this.runAlgorithmButton.setDisable(false);
         this.tableView.getSortOrder().add(taskIdColumn);
         this.tableView.refresh();
-        this.tableView.getScene().getWindow().setHeight(500);
+        this.tableView.getScene().getWindow().setHeight(600);
         machinesTable(algorithm.getMachines());
     }
 
@@ -132,14 +138,10 @@ public class MainController implements Initializable {
     }
 
     private void machinesTable(List<Machine> machines){
-
-        GridPane gridPane = new GridPane();
-        gridPane.setMinSize(500,500);
-//        gridPane.setPadding(new Insets(10,10,10,10));
-//        gridPane.setVgap(20);
-//        gridPane.setHgap(20);
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setGridLinesVisible(true);
+        this.resultsGrid.getChildren().clear();
+        this.resultsGrid.setMinSize(500,500);
+        this.resultsGrid.setAlignment(Pos.TOP_LEFT);
+        this.resultsGrid.setGridLinesVisible(true);
 
         int maxSize = 0;
         for(Machine machine: machines){
@@ -154,7 +156,7 @@ public class MainController implements Initializable {
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
             label.setPadding(new Insets(10,10,10,10));
             GridPane.setHalignment(label, HPos.CENTER);
-            gridPane.add(label, k, 0);
+            this.resultsGrid.add(label, k, 0);
         }
 
         int j = 1, i = 1;
@@ -163,7 +165,7 @@ public class MainController implements Initializable {
             label.setPadding(new Insets(10,10,10,10));
             GridPane.setHalignment(label, HPos.CENTER);
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
-            gridPane.add(label, 0, i);
+            this.resultsGrid.add(label, 0, i);
             for(model.Node node: machine.getNodes()){
                 String taskName = "-";
                 if(node instanceof Task task) {
@@ -172,18 +174,12 @@ public class MainController implements Initializable {
                 label = new Label(taskName);
                 label.setFont(new Font("Arial", 24));
                 label.setPadding(new Insets(10,10,10,10));
-                gridPane.add(label, j, i);
+                this.resultsGrid.add(label, j, i);
                 j++;
             }
             j=1;
             i++;
         }
-        Scene scene = new Scene(gridPane);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Result of Algorithm");
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void showGraph(ActionEvent actionEvent) {

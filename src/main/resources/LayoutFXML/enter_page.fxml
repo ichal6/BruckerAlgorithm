@@ -13,6 +13,7 @@
 <?import javafx.scene.control.Separator?>
 
 <?import javafx.stage.Screen?>
+<?import javafx.scene.layout.GridPane?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController" stylesheets="@../css/main.css" styleClass="main-window">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen" />
@@ -69,8 +70,8 @@
         <Separator layoutY="270" prefWidth="${screen.visualBounds.width}" />
         <Group>
             <Label layoutX="40" layoutY="300" text="unit time"/>
-            <Label layoutX="-40" layoutY="400" text="machine's name" rotate="90"/>
-
+            <Label layoutX="-20" layoutY="400" text="machine's name" rotate="90"/>
+            <GridPane styleClass="gridPane" fx:id="resultsGrid" layoutX="40" layoutY="320"/>
         </Group>
         <Button fx:id="lmaxButton" layoutX="420.0" layoutY="270"  onAction="#showLmax" text="SHOW L MAX" />
     </children>

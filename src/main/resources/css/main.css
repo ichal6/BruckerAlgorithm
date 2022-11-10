@@ -21,6 +21,11 @@
     -fx-opacity: 0.5;
 }
 
+.gridPane Line{
+    -fx-stroke: red;
+    -fx-stroke-width: 4;
+}
+
 .run-button{
     -fx-background-color: #FFA5A5;
 }

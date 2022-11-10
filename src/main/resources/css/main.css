@@ -2,6 +2,12 @@
     -fx-background-color: #D8E6EE;
 }
 
+.label{
+    -fx-font-family: 'Inter';
+    -fx-font-size: 12px;
+    -fx-text-fill: #A5A5A5;
+}
+
 .button{
     -fx-text-fill: #777777;
     -fx-font-family: 'Inter';

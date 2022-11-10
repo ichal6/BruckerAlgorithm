@@ -107,6 +107,7 @@ public class MainController implements Initializable {
         this.runAlgorithmButton.setDisable(false);
         this.tableView.getSortOrder().add(taskIdColumn);
         this.tableView.refresh();
+        this.tableView.getScene().getWindow().setHeight(500);
         machinesTable(algorithm.getMachines());
     }
 

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -134,10 +135,11 @@ public class MainController implements Initializable {
 
         GridPane gridPane = new GridPane();
         gridPane.setMinSize(500,500);
-        gridPane.setPadding(new Insets(10,10,10,10));
-        gridPane.setVgap(5);
-        gridPane.setHgap(20);
+//        gridPane.setPadding(new Insets(10,10,10,10));
+//        gridPane.setVgap(20);
+//        gridPane.setHgap(20);
         gridPane.setAlignment(Pos.CENTER);
+        gridPane.setGridLinesVisible(true);
 
         int maxSize = 0;
         for(Machine machine: machines){
@@ -150,12 +152,16 @@ public class MainController implements Initializable {
         for(int k = 1; k <= maxSize; k++){
             Label label = new Label(String.valueOf(k));
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
+            label.setPadding(new Insets(10,10,10,10));
+            GridPane.setHalignment(label, HPos.CENTER);
             gridPane.add(label, k, 0);
         }
 
         int j = 1, i = 1;
         for(Machine machine: machines){
-            Label label = new Label("M" + j);
+            Label label = new Label("M" + i);
+            label.setPadding(new Insets(10,10,10,10));
+            GridPane.setHalignment(label, HPos.CENTER);
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
             gridPane.add(label, 0, i);
             for(model.Node node: machine.getNodes()){
@@ -165,6 +171,7 @@ public class MainController implements Initializable {
                 }
                 label = new Label(taskName);
                 label.setFont(new Font("Arial", 24));
+                label.setPadding(new Insets(10,10,10,10));
                 gridPane.add(label, j, i);
                 j++;
             }

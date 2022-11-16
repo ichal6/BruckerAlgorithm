@@ -1,7 +1,6 @@
 package controller;
 
 import algorithm.Brucker;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Machine;
 import model.Task;
@@ -33,8 +32,9 @@ public class MainController implements Initializable {
     public Button drawGraph;
     @FXML
     public Button showResults;
+    private GridPane resultsGrid;
     @FXML
-    public GridPane resultsGrid;
+    public Group resultGroup;
     @FXML
     private TableView<Task> tableView;
     @FXML
@@ -138,10 +138,17 @@ public class MainController implements Initializable {
     }
 
     private void machinesTable(List<Machine> machines){
-        this.resultsGrid.getChildren().clear();
-        this.resultsGrid.setMinSize(500,500);
-        this.resultsGrid.setAlignment(Pos.TOP_LEFT);
-        this.resultsGrid.setGridLinesVisible(true);
+        if (this.resultsGrid != null){
+            this.resultsGrid.getChildren().clear();
+        }
+        GridPane gridPane = new GridPane();
+        this.resultsGrid = gridPane;
+        gridPane.setLayoutX(40);
+        gridPane.setLayoutY(320);
+        gridPane.getChildren().clear();
+        gridPane.setMinSize(500,500);
+        gridPane.setAlignment(Pos.TOP_LEFT);
+        gridPane.setGridLinesVisible(true);
 
         int maxSize = 0;
         for(Machine machine: machines){
@@ -156,7 +163,7 @@ public class MainController implements Initializable {
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
             label.setPadding(new Insets(10,10,10,10));
             GridPane.setHalignment(label, HPos.CENTER);
-            this.resultsGrid.add(label, k, 0);
+            gridPane.add(label, k, 0);
         }
 
         int j = 1, i = 1;
@@ -165,7 +172,7 @@ public class MainController implements Initializable {
             label.setPadding(new Insets(10,10,10,10));
             GridPane.setHalignment(label, HPos.CENTER);
             label.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
-            this.resultsGrid.add(label, 0, i);
+            gridPane.add(label, 0, i);
             for(model.Node node: machine.getNodes()){
                 String taskName = "-";
                 if(node instanceof Task task) {
@@ -174,12 +181,13 @@ public class MainController implements Initializable {
                 label = new Label(taskName);
                 label.setFont(new Font("Arial", 24));
                 label.setPadding(new Insets(10,10,10,10));
-                this.resultsGrid.add(label, j, i);
+                gridPane.add(label, j, i);
                 j++;
             }
             j=1;
             i++;
         }
+        this.resultGroup.getChildren().add(gridPane);
     }
 
     public void showGraph(ActionEvent actionEvent) {

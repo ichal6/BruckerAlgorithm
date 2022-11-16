@@ -68,10 +68,9 @@
         </Button>
         </Group>
         <Separator layoutY="270" prefWidth="${screen.visualBounds.width}" />
-        <Group>
+        <Group fx:id="resultGroup">
             <Label layoutX="40" layoutY="300" text="unit time"/>
             <Label layoutX="-20" layoutY="400" text="machine's name" rotate="90"/>
-            <GridPane styleClass="gridPane" fx:id="resultsGrid" layoutX="40" layoutY="320"/>
         </Group>
         <Button fx:id="lmaxButton" layoutX="420.0" layoutY="270"  onAction="#showLmax" text="SHOW L MAX" />
     </children>

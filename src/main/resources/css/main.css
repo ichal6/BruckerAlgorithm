@@ -21,9 +21,11 @@
     -fx-opacity: 0.5;
 }
 
-.gridPane Line{
-    -fx-stroke: red;
-    -fx-stroke-width: 4;
+.l-max{
+    -fx-background-color: #F3F3F3;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 4px;
 }
 
 .run-button{

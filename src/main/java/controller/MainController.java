@@ -51,15 +51,13 @@ public class MainController implements Initializable {
     private TextField machinesTF;
 
     @FXML
-    private Button addNewTaskButton, refreshButton, numberOfMachinesButton, runAlgorithmButton, lmaxButton;
+    private Button addNewTaskButton, refreshButton, numberOfMachinesButton, runAlgorithmButton;
 
     private Stage stage;
     private Scene scene;
     private Task root;
     private Brucker algorithm;
     private int machines;
-    private List<Node> gridPaneChildren;
-    private boolean isFirst = true;
 
 
     public void setRoot(Task root) {
@@ -110,16 +108,16 @@ public class MainController implements Initializable {
     public void runAlgorithm(ActionEvent event) {
         this.algorithm = new Brucker(this.machines, this.root);
         algorithm.runAlgorithm();
-        lmaxButton.setDisable(false);
         this.runAlgorithmButton.setDisable(false);
         this.tableView.getSortOrder().add(taskIdColumn);
         this.tableView.refresh();
         this.tableView.getScene().getWindow().setHeight(600);
         machinesTable(algorithm.getMachines());
+        showLMax();
     }
 
-    public void showLmax(ActionEvent event) {
-        L_maxLabel.setText("L_MAX = " + algorithm.getL_Max());
+    private void showLMax(){
+        this.L_maxLabel.setText(algorithm.getL_Max().toString());
     }
 
     private void numberValidator() {

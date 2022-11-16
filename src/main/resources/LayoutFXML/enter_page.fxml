@@ -13,6 +13,7 @@
 <?import javafx.scene.control.Separator?>
 
 <?import javafx.stage.Screen?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController" stylesheets="@../css/main.css" styleClass="main-window">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen" />
@@ -65,8 +66,8 @@
         <Group fx:id="resultGroup">
             <Label layoutX="40" layoutY="300" text="unit time"/>
             <Label layoutX="-20" layoutY="400" text="machine's name" rotate="90"/>
-            <Label text="L max:" layoutX="40" layoutY="500.0" prefHeight="25.0"  styleClass="l-max"/>
-            <Label alignment="CENTER" fx:id="L_maxLabel" layoutX="100" layoutY="500.0" prefWidth="30" prefHeight="25.0" styleClass="l-max">
+            <Label fx:id="L_maxLabel" text="L max:" layoutX="40" layoutY="500.0" prefHeight="25.0"  styleClass="l-max"/>
+            <Label alignment="CENTER" fx:id="L_maxValue" layoutX="100" layoutY="500.0" prefWidth="30" prefHeight="25.0" styleClass="l-max">
                 <font>
                     <Font size="16.0" />
                 </font>

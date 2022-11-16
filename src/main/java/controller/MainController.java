@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.stage.Stage;
@@ -30,6 +31,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
     @FXML
     public Button drawGraph, showResults, hideResults;
+    public VBox vBoxResult;
     private GridPane resultsGrid;
     @FXML
     public Group resultGroup;
@@ -44,7 +46,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Task, Integer> LColumn;
     @FXML
-    public Label L_maxLabel;
+    public Label L_maxLabel, L_maxValue;
     @FXML
     private TextField machinesTF;
 
@@ -56,6 +58,7 @@ public class MainController implements Initializable {
     private Task root;
     private Brucker algorithm;
     private int machines;
+    private final double startPoint = 320.0;
 
 
     public void setRoot(Task root) {
@@ -115,7 +118,10 @@ public class MainController implements Initializable {
     }
 
     private void showLMax(){
-        this.L_maxLabel.setText(algorithm.getL_Max().toString());
+        this.L_maxLabel.setLayoutY(this.startPoint + 38*(this.machines + 1));
+        this.L_maxValue.setLayoutY(this.startPoint + 38*(this.machines + 1));
+
+        this.L_maxValue.setText(algorithm.getL_Max().toString());
     }
 
     private void numberValidator() {
@@ -140,9 +146,8 @@ public class MainController implements Initializable {
         GridPane gridPane = new GridPane();
         this.resultsGrid = gridPane;
         gridPane.setLayoutX(40);
-        gridPane.setLayoutY(320);
+        gridPane.setLayoutY(this.startPoint);
         gridPane.getChildren().clear();
-//        gridPane.setMinSize(500,500);
         gridPane.setAlignment(Pos.TOP_LEFT);
         gridPane.setGridLinesVisible(true);
 

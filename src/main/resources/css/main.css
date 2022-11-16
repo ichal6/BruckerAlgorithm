@@ -2,6 +2,10 @@
     -fx-background-color: #D8E6EE;
 }
 
+.graph-window{
+    -fx-background-color: #CAEDD2;
+}
+
 .label{
     -fx-font-family: 'Inter';
     -fx-font-size: 12px;

@@ -10,10 +10,10 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.Graph"
-            prefHeight="400.0" prefWidth="600.0">
-    <VBox>
+            minHeight="100" prefWidth="600.0">
+    <VBox prefWidth="600" alignment="TOP_CENTER">
         <Canvas fx:id="canvas"/>
-        <Button text="close" onAction="#returnToMainMenu"/>
+        <Button alignment="BOTTOM_CENTER" text="close" onAction="#returnToMainMenu"/>
     </VBox>
 
 </AnchorPane>

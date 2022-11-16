@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import model.Task;
@@ -56,6 +57,8 @@ public class Graph implements Initializable {
                 }
                 childrenTasks.addAll(currentTask.getPreviousTasks());
                 gc.strokeOval(x, y,size,size);
+                gc.setFill(Color.rgb(217,217,217));
+                gc.fillOval(x, y,size,size);
                 if(!currentTask.isRoot()){
                     drawArrowLine(x+size/2,y, xParent+size/2, yParent+size, disableAngle, gc);
                 }

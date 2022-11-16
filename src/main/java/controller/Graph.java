@@ -49,8 +49,8 @@ public class Graph implements Initializable {
             } else{
                 currentTask = remainTasks.remove(0);
                 childrenTasks.addAll(currentTask.getPreviousTasks());
-                x+= 20;
                 gc.strokeOval(x, y,10,10);
+                x+= 20;
             }
         }
 

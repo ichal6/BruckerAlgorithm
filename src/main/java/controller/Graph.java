@@ -31,29 +31,32 @@ public class Graph implements Initializable {
 
     private void drawGraph(){
         final double size = 30;
+        final double xCanvas = this.canvas.getWidth();
         GraphicsContext gc = this.canvas.getGraphicsContext2D();
         Task currentTask = this.tasksMap.get("root");
         List<Task> remainTasks = new ArrayList<>(Collections.singletonList(currentTask));
         List<Task> childrenTasks = new ArrayList<>();
-        double x = 0, y = 0, xParent = 0, yParent = 0;
-        int siblingCount = 0;
+        double x = xCanvas/2, y = 0, xParent = x, yParent = y, offset=0;
+        int siblingCount = 2;
         boolean disableAngle = false;
 
         while(!childrenTasks.isEmpty() || !remainTasks.isEmpty()){
             if(remainTasks.isEmpty()){
+                xParent = (xCanvas/(siblingCount));
+                offset = xParent;
+                siblingCount = childrenTasks.size() + 1;
                 yParent = y;
-                xParent = 0;
                 y+=2*size;
-                x=0;
+                x=(xCanvas/(siblingCount));
+
                 remainTasks.addAll(childrenTasks);
                 childrenTasks.clear();
-                siblingCount = currentTask.getPreviousTasks().size();
             } else{
                 Task nextTask = currentTask.getNextTask();
                 currentTask = remainTasks.remove(0);
                 disableAngle = nextTask == currentTask.getNextTask();
-                if(nextTask != currentTask.getNextTask() && x > 0){
-                    xParent += 2*size;
+                if(nextTask != currentTask.getNextTask() && x > xParent){
+                    xParent += offset;
                 }
                 childrenTasks.addAll(currentTask.getPreviousTasks());
                 gc.strokeOval(x, y,size,size);
@@ -62,7 +65,7 @@ public class Graph implements Initializable {
                 if(!currentTask.isRoot()){
                     drawArrowLine(x+size/2,y, xParent+size/2, yParent+size, disableAngle, gc);
                 }
-                x+= 2*size;
+                x+= xCanvas/(siblingCount);
             }
         }
     }

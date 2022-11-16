@@ -14,10 +14,7 @@ import model.Task;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Graph implements Initializable {
     @FXML
@@ -33,12 +30,11 @@ public class Graph implements Initializable {
     private void drawGraph(){
         GraphicsContext gc = this.canvas.getGraphicsContext2D();
         Task currentTask = this.tasksMap.get("root");
-        List<Task> remainTasks = new ArrayList<>();
-        List<Task> childrenTasks = new ArrayList<>(currentTask.getPreviousTasks());
+        List<Task> remainTasks = new ArrayList<>(Collections.singletonList(currentTask));
+        List<Task> childrenTasks = new ArrayList<>();
         double x = 0, y = 0;
         int siblingCount = 0;
 
-        gc.strokeOval(x, y,10,10); //draw root
         while(!childrenTasks.isEmpty() || !remainTasks.isEmpty()){
             if(remainTasks.isEmpty()){
                 y+=20;
@@ -53,7 +49,6 @@ public class Graph implements Initializable {
                 x+= 20;
             }
         }
-
     }
 
     public void returnToMainMenu(ActionEvent event){

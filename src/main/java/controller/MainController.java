@@ -29,9 +29,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
-    public Button drawGraph;
-    @FXML
-    public Button showResults;
+    public Button drawGraph, showResults, hideResults;
     private GridPane resultsGrid;
     @FXML
     public Group resultGroup;
@@ -144,7 +142,7 @@ public class MainController implements Initializable {
         gridPane.setLayoutX(40);
         gridPane.setLayoutY(320);
         gridPane.getChildren().clear();
-        gridPane.setMinSize(500,500);
+//        gridPane.setMinSize(500,500);
         gridPane.setAlignment(Pos.TOP_LEFT);
         gridPane.setGridLinesVisible(true);
 

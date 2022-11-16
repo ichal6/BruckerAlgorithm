@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Machine;
 import model.Task;
@@ -99,6 +100,19 @@ public class MainController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void showGraph(ActionEvent event) throws IOException {
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("LayoutFXML/graph.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(this.stage);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     public void setMachines(ActionEvent event) {
@@ -189,9 +203,5 @@ public class MainController implements Initializable {
             i++;
         }
         this.resultGroup.getChildren().add(gridPane);
-    }
-
-    public void showGraph(ActionEvent actionEvent) {
-        System.out.println("Test click");
     }
 }

@@ -13,7 +13,7 @@
             minHeight="100" prefWidth="600.0"
             stylesheets="@../css/main.css" styleClass="graph-window">
     <VBox prefWidth="600" alignment="TOP_CENTER">
-        <Canvas fx:id="canvas"/>
+        <Canvas fx:id="canvas" width="300" height="300"/>
         <Button alignment="BOTTOM_CENTER" text="close" onAction="#returnToMainMenu"/>
     </VBox>
 

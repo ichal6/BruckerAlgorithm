@@ -40,6 +40,8 @@ public class Graph implements Initializable {
         List<Task> remainTasks = new ArrayList<>(Collections.singletonList(currentTask));
         List<Task> childrenTasks = new ArrayList<>();
         double x = xCanvas/2, y = 5, xParent = x, yParent = y, offset=0;
+        currentTask.setX(x);
+        currentTask.setY(y);
         int siblingCount = 2;
         boolean disableAngle = false;
 
@@ -57,6 +59,8 @@ public class Graph implements Initializable {
             } else{
                 Task nextTask = currentTask.getNextTask();
                 currentTask = remainTasks.remove(0);
+                currentTask.setX(x);
+                currentTask.setY(y);
                 disableAngle = nextTask == currentTask.getNextTask();
                 if(nextTask != currentTask.getNextTask() && x > xParent){
                     xParent += offset;
@@ -71,7 +75,7 @@ public class Graph implements Initializable {
                 gc.setTextBaseline(VPos.CENTER);
                 gc.fillText(currentTask.getId() + ";" + currentTask.getD_j(),x+size/2,y+size/2);
                 if(!currentTask.isRoot()){
-                    drawArrowLine(x+size/2,y, xParent+size/2, yParent+size, disableAngle, gc);
+                    drawArrowLine(x+size/2,y, currentTask.getNextTask().getX()+size/2, currentTask.getNextTask().getY() +size, disableAngle, gc);
                 }
                 if(y>this.canvas.getHeight() || x > this.canvas.getWidth()){
                     this.canvas.setHeight(y+size*2);

@@ -67,14 +67,19 @@ public class MainController implements Initializable {
     }
 
     public void fillTableWithData() {
-        Map<String, Task> tasks = LoadData.tasksMap;
-        tasks.forEach(
-                (key, value) -> {
-                    if(!key.equals("root"))
-                        tableView.getItems().add(value);
-                }
-        );
-        this.tableView.getSortOrder().add(taskIdColumn);
+        if(LoadData.isDataCorrect()) {
+            Map<String, Task> tasks = LoadData.tasksMap;
+            tasks.forEach(
+                    (key, value) -> {
+                        if(!key.equals("root"))
+                            tableView.getItems().add(value);
+                    }
+            );
+            this.tableView.getSortOrder().add(taskIdColumn);
+        } else{
+            LoadData.tasksMap.clear();
+        }
+
     }
 
 
@@ -238,5 +243,32 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void isCorrect(ActionEvent actionEvent) {
+        boolean isCorrectData = LoadData.isDataCorrect();
+        if(isCorrectData){
+            correctData();
+        }else{
+            wrongData();
+        }
+    }
+
+    private void wrongData(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Wrong data");
+        alert.setHeaderText("Problem with nodes.");
+        alert.setContentText("Please insert correct data");
+        alert.showAndWait().ifPresent(rs -> {
+        });
+    }
+
+    private void correctData(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Dataset OK");
+        alert.setHeaderText("Everything OK.");
+        alert.setContentText("Dataset is OK");
+        alert.showAndWait().ifPresent(rs -> {
+        });
     }
 }

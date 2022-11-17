@@ -9,8 +9,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LoadData {
 
@@ -41,6 +41,23 @@ public class LoadData {
             tasksMap.put(newTask.getId(), newTask);
         }
         return root;
+    }
+
+
+    public static boolean isDataCorrect(){
+        Task root = LoadData.tasksMap.get("root");
+        List<Task> allTasks = new ArrayList<>(LoadData.tasksMap.values());
+        List<Task> leafs = allTasks.stream().filter(t -> !t.isRoot()).filter(Task::isLeaf).toList();
+        for(Task task: leafs){
+            Task currentTask = task;
+            while(currentTask != root){
+                currentTask = currentTask.getNextTask();
+                if(currentTask == null){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

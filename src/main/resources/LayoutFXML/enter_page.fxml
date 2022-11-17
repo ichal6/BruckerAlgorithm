@@ -49,7 +49,7 @@
             </font>
         </Button>
 
-        <Button layoutX="340.0" layoutY="221.0" text="Check data" styleClass="check-button">
+        <Button layoutX="340.0" layoutY="221.0" text="Check data" styleClass="check-button" onAction="#isCorrect">
             <font>
                 <Font size="12.0"/>
             </font>

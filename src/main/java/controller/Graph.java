@@ -73,6 +73,10 @@ public class Graph implements Initializable {
                 if(!currentTask.isRoot()){
                     drawArrowLine(x+size/2,y, xParent+size/2, yParent+size, disableAngle, gc);
                 }
+                if(y>this.canvas.getHeight() || x > this.canvas.getWidth()){
+                    this.canvas.setHeight(y+size*2);
+                    this.canvas.setWidth(x+size);
+                }
                 x+= xCanvas/(siblingCount);
             }
         }

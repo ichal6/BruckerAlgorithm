@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.Task;
 
@@ -62,6 +64,10 @@ public class Graph implements Initializable {
                 gc.strokeOval(x, y,size,size);
                 gc.setFill(Color.rgb(217,217,217));
                 gc.fillOval(x, y,size,size);
+                gc.setFill(Color.GRAY);
+                gc.setTextAlign(TextAlignment.LEFT);
+                gc.setTextBaseline(VPos.CENTER);
+                gc.fillText(currentTask.getId(),x+2,y+size/2);
                 if(!currentTask.isRoot()){
                     drawArrowLine(x+size/2,y, xParent+size/2, yParent+size, disableAngle, gc);
                 }

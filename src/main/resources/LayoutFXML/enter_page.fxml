@@ -13,7 +13,6 @@
 <?import javafx.scene.control.Separator?>
 
 <?import javafx.stage.Screen?>
-<?import javafx.scene.layout.VBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController" stylesheets="@../css/main.css" styleClass="main-window">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen" />
@@ -44,7 +43,7 @@
             </font>
         </Button>
 
-        <Button fx:id="showResults" layoutX="417.0" layoutY="155.0" text="_Show results">
+        <Button fx:id="showResults" layoutX="417.0" layoutY="155.0" text="_Show results" onAction="#showResults">
             <font>
                 <Font size="12.0"/>
             </font>
@@ -72,7 +71,7 @@
                     <Font size="16.0" />
                 </font>
             </Label>
-            <Button fx:id="hideResults" layoutX="417.0" layoutY="500.0" text="_Hide results">
+            <Button fx:id="hideResults" layoutX="417.0" layoutY="500.0" text="_Hide results" onAction="#hideResults">
                 <font>
                     <Font size="12.0"/>
                 </font>

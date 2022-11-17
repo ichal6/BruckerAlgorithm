@@ -205,4 +205,18 @@ public class MainController implements Initializable {
         }
         this.resultGroup.getChildren().add(gridPane);
     }
+
+    public void showResults(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setWidth(600);
+        stage.setHeight(600);
+        this.showResults.setDisable(true);
+    }
+
+    public void hideResults(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setWidth(600);
+        stage.setHeight(290);
+        this.showResults.setDisable(false);
+    }
 }

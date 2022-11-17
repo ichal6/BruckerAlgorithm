@@ -34,12 +34,12 @@ public class Graph implements Initializable {
 
     private void drawGraph(){
         final double size = 50;
-        final double xCanvas = this.canvas.getWidth();
+        double xCanvas = this.canvas.getWidth();
         GraphicsContext gc = this.canvas.getGraphicsContext2D();
         Task currentTask = this.tasksMap.get("root");
         List<Task> remainTasks = new ArrayList<>(Collections.singletonList(currentTask));
         List<Task> childrenTasks = new ArrayList<>();
-        double x = xCanvas/2, y = 5, xParent = x, yParent = y, offset=0;
+        double x = xCanvas/2, y = 5;
         currentTask.setX(x);
         currentTask.setY(y);
         int siblingCount = 2;
@@ -47,13 +47,14 @@ public class Graph implements Initializable {
 
         while(!childrenTasks.isEmpty() || !remainTasks.isEmpty()){
             if(remainTasks.isEmpty()){
-                xParent = (xCanvas/(siblingCount));
-                offset = xParent;
                 siblingCount = childrenTasks.size() + 1;
-                yParent = y;
                 y+=2*size;
                 x=(xCanvas/(siblingCount));
-
+                if(x < size){
+                    this.canvas.setWidth(xCanvas*1.5);
+                    xCanvas = this.canvas.getWidth();
+                    x=(xCanvas/(siblingCount));
+                }
                 remainTasks.addAll(childrenTasks);
                 childrenTasks.clear();
             } else{
@@ -62,9 +63,6 @@ public class Graph implements Initializable {
                 currentTask.setX(x);
                 currentTask.setY(y);
                 disableAngle = nextTask == currentTask.getNextTask();
-                if(nextTask != currentTask.getNextTask() && x > xParent){
-                    xParent += offset;
-                }
                 childrenTasks.addAll(currentTask.getPreviousTasks());
                 gc.strokeOval(x, y,size,size);
                 gc.setFill(Color.rgb(217,217,217));

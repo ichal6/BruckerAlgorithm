@@ -52,7 +52,7 @@ public class AddNewTaskController implements Initializable {
         Task nextTask = LoadData.tasksMap.get(nextTaskId);
         Task newTask = new Task(taskId, deadline, nextTask);
         nextTask.getPreviousTasks().add(newTask);
-        LoadData.tasksMap.put("Z13", newTask);
+        LoadData.tasksMap.put(taskId, newTask);
 
         returnToMainMenu(event);
     }

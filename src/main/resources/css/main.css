@@ -43,3 +43,12 @@
 .reset-button{
     -fx-background-color: #DEFDFF;
 }
+
+.header {
+    -fx-padding: 10px;
+    -fx-background-color: #F3F3F3;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}

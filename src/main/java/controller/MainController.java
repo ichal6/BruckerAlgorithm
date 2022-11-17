@@ -89,6 +89,7 @@ public class MainController implements Initializable {
         this.runAlgorithmButton.setDisable(true);
         showResults.setDisable(true);
         numberValidator();
+        this.drawGraph.setDisable(LoadData.tasksMap.isEmpty());
     }
 
     public void addNewTask(ActionEvent event) throws IOException {
@@ -118,7 +119,8 @@ public class MainController implements Initializable {
 
     public void setMachines(ActionEvent event) {
         this.machines = Integer.parseInt(machinesTF.getText());
-        this.runAlgorithmButton.setDisable(false);
+        if(LoadData.tasksMap.size() > 2)
+            this.runAlgorithmButton.setDisable(false);
     }
 
     public void runAlgorithm(ActionEvent event) {
@@ -218,5 +220,23 @@ public class MainController implements Initializable {
         stage.setWidth(600);
         stage.setHeight(290);
         this.showResults.setDisable(false);
+    }
+
+    public void resetData(ActionEvent actionEvent) throws IOException {
+        LoadData.tasksMap.clear();
+        this.tableView.getItems().clear();
+        this.drawGraph.setDisable(true);
+        addNewRoot(actionEvent);
+    }
+
+    private void addNewRoot(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("LayoutFXML/add_root.fxml"));
+        stage.setUserData(this);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

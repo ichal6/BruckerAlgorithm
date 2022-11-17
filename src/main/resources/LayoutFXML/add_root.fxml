@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AddRoot"
+            prefHeight="200.0" prefWidth="200.0"
+            stylesheets="@../css/main.css" styleClass="main-window">
+        <VBox minWidth="200" alignment="CENTER">
+            <Label maxWidth="Infinity"  alignment="TOP_CENTER" text="Provide deadline for new root" styleClass="header">
+                <font>
+                    <Font name="Inter" size="12"/>
+                </font>
+            </Label>
+            <TextField fx:id="deadlineTextField" layoutX="14.0" layoutY="145.0"/>
+            <Button  alignment="BOTTOM_CENTER" layoutX="14.0" layoutY="254.0" mnemonicParsing="false" onAction="#add" text="ADD"/>
+        </VBox>
+
+</AnchorPane>

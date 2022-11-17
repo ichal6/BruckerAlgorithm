@@ -35,8 +35,6 @@ public class Graph implements Initializable {
         List<Task> remainTasks = new ArrayList<>(Collections.singletonList(currentTask));
         List<Task> childrenTasks = new ArrayList<>();
         double x = xCanvas/2, y = 5;
-        currentTask.setX(x);
-        currentTask.setY(y);
         int siblingCount = 2;
         boolean disableAngle = false;
 

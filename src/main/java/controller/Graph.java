@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.Task;
@@ -32,13 +33,13 @@ public class Graph implements Initializable {
     }
 
     private void drawGraph(){
-        final double size = 30;
+        final double size = 50;
         final double xCanvas = this.canvas.getWidth();
         GraphicsContext gc = this.canvas.getGraphicsContext2D();
         Task currentTask = this.tasksMap.get("root");
         List<Task> remainTasks = new ArrayList<>(Collections.singletonList(currentTask));
         List<Task> childrenTasks = new ArrayList<>();
-        double x = xCanvas/2, y = 0, xParent = x, yParent = y, offset=0;
+        double x = xCanvas/2, y = 5, xParent = x, yParent = y, offset=0;
         int siblingCount = 2;
         boolean disableAngle = false;
 
@@ -65,9 +66,10 @@ public class Graph implements Initializable {
                 gc.setFill(Color.rgb(217,217,217));
                 gc.fillOval(x, y,size,size);
                 gc.setFill(Color.GRAY);
-                gc.setTextAlign(TextAlignment.LEFT);
+                gc.setFont(new Font("Inter", 12));
+                gc.setTextAlign(TextAlignment.CENTER);
                 gc.setTextBaseline(VPos.CENTER);
-                gc.fillText(currentTask.getId(),x+2,y+size/2);
+                gc.fillText(currentTask.getId() + ";" + currentTask.getD_j(),x+size/2,y+size/2);
                 if(!currentTask.isRoot()){
                     drawArrowLine(x+size/2,y, xParent+size/2, yParent+size, disableAngle, gc);
                 }

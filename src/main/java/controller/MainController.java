@@ -109,6 +109,7 @@ public class MainController implements Initializable {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        stage.setTitle("Graph");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(this.stage);
         stage.setScene(scene);

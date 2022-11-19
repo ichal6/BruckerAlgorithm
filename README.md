@@ -4,7 +4,7 @@
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
-* [Features](#features)<!-- * [Screenshots](#screenshots) -->
+* [Screenshots](#screenshots)
 * [Setup](#setup)<!-- * [Usage](#usage) -->
 * [Project Status](#project-status)  <!-- * [Room for Improvement](#room-for-improvement) * [Acknowledgements](#acknowledgements) -->
 * [Contact](#contact)
@@ -30,10 +30,17 @@
 - Maven
 
 ## Screenshots
-![Main window](./img/login-page.png)
-![Graph](./img/login-page-mobile.png)
-![Scheduler](./img/lists-page-mobile.png)
-![Add new Task](./img/lists-page-tablet.png)
+![Main window](./img/main-window.png)
+1. Main window
+
+![Graph](./img/graph.png)
+2. Graph
+
+![Scheduler](./img/scheduler.png)
+3. Scheduler
+
+![Add new Task](./img/new_task.png)
+4. Add new Task
 
 
 ## Setup

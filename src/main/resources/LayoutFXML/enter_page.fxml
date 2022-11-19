@@ -7,9 +7,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Separator?>
+
+<?import javafx.stage.Screen?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController" stylesheets="@../css/main.css" styleClass="main-window">
+    <fx:define>
+        <Screen fx:factory="getPrimary" fx:id="screen" />
+    </fx:define>
     <children>
+        <Group>
         <TableView fx:id="tableView" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="305.0">
             <columns>
                 <TableColumn fx:id="taskIdColumn" prefWidth="75.0" text="Task ID" />
@@ -18,19 +27,55 @@
                 <TableColumn fx:id="LColumn" prefWidth="75.0" text="L" />
             </columns>
         </TableView>
-        <Label alignment="CENTER" fx:id="L_maxLabel" layoutX="346.0" layoutY="188.0" prefHeight="25.0" prefWidth="186.0">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Label>
         <Button fx:id="addNewTaskButton" layoutX="116.0" layoutY="221.0" mnemonicParsing="false" onAction="#addNewTask" text="ADD NEW TASK" />
-        <TextField fx:id="machinesTF" layoutX="413.0" layoutY="14.0" prefHeight="25.0" prefWidth="48.0" />
-        <Button fx:id="numberOfMachinesButton" layoutX="354.0" layoutY="48.0" mnemonicParsing="false" onAction="#setMachines" text="SET NUMBER OF MACHINES" />
-        <Button fx:id="runAlgorithmButton" layoutX="365.0" layoutY="97.0" mnemonicParsing="false" onAction="#runAlgorithm" text="RUN ALGORITHM">
+        <Pane>
+            <TextField fx:id="machinesTF" layoutX="340.0" layoutY="15.0" prefHeight="25.0" prefWidth="48.0" />
+            <Button fx:id="numberOfMachinesButton" layoutX="400.0" layoutY="15.0" mnemonicParsing="false" onAction="#setMachines" text="SET NUMBER OF MACHINES" />
+        </Pane>
+        <Button fx:id="runAlgorithmButton" layoutX="400.0" layoutY="60.0" mnemonicParsing="false" onAction="#runAlgorithm" text="RUN ALGORITHM" styleClass="run-button">
             <font>
                 <Font size="16.0" />
             </font>
         </Button>
-        <Button fx:id="lmaxButton" layoutX="395.0" layoutY="151.0" mnemonicParsing="false" onAction="#showLmax" text="SHOW L MAX" />
+        <Button fx:id="drawGraph" layoutX="420.0" layoutY="120.0" text="_Draw graph" onAction="#showGraph">
+            <font>
+                <Font size="12.0"/>
+            </font>
+        </Button>
+
+        <Button fx:id="showResults" layoutX="417.0" layoutY="155.0" text="_Show results" onAction="#showResults">
+            <font>
+                <Font size="12.0"/>
+            </font>
+        </Button>
+
+        <Button layoutX="340.0" layoutY="221.0" text="Check data" styleClass="check-button" onAction="#isCorrect">
+            <font>
+                <Font size="12.0"/>
+            </font>
+        </Button>
+
+        <Button layoutX="490.0" layoutY="221.0" text="Reset data" styleClass="reset-button" onAction="#resetData">
+            <font>
+                <Font name="Inter" size="12.0"/>
+            </font>
+        </Button>
+        </Group>
+        <Separator layoutY="270" prefWidth="${screen.visualBounds.width}" />
+        <Group fx:id="resultGroup">
+            <Label layoutX="40" layoutY="300" text="unit time"/>
+            <Label layoutX="-20" layoutY="400" text="machine's name" rotate="90"/>
+            <Label fx:id="L_maxLabel" text="L max:" layoutX="40" layoutY="500.0" prefHeight="25.0"  styleClass="l-max"/>
+            <Label alignment="CENTER" fx:id="L_maxValue" layoutX="100" layoutY="500.0" prefWidth="30" prefHeight="25.0" styleClass="l-max">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Button fx:id="hideResults" layoutX="417.0" layoutY="500.0" text="_Hide results" onAction="#hideResults">
+                <font>
+                    <Font size="12.0"/>
+                </font>
+            </Button>
+        </Group>
     </children>
 </AnchorPane>
